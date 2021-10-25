@@ -7,10 +7,16 @@ def dice(dice_code):
     dice_code = dice_code
     for dice in types_dices:
         if dice in dice_code:
-            list_dice_code = dice_code.split(dice)
-            actual_dice = dice
+            try:
+                list_dice_code = dice_code.split(dice)
+                actual_dice = dice
+            except ValueError:
+                return "Wrong input"
+            break
+
     throws = int(list_dice_code[0])
     extra_value = list_dice_code[1]
+
 
 
 print(dice("2D10+8"))
