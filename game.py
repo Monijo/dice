@@ -9,17 +9,30 @@ def dice(dice_code):
         if dice in dice_code:
             try:
                 multiply, modifier = dice_code.split(dice)
-                actual_dice = dice
+                actual_dice = int(dice[1:])
             except ValueError:
                 return "Wrong input"
+
             break
     else:
         return "Wrong input"
 
-    throws = int(list_dice_code[0])
-    extra_value = list_dice_code[1]
+    try:
+        multiply = int(multiply) if multiply else 1
+    except:
+        return "Wrong input"
+    try:
+        modifier = int(modifier) if modifier else 0
+    except:
+        return "Wrong input"
+    sum_throws = 0
+    for i in range(multiply):
+        throw = random.randint(1, actual_dice+1)
+        print(throw)
+        sum_throws += throw
+    sum_dices = sum_throws + modifier
+    return sum_dices
 
-
-
-print(dice("2D10+8"))
+if __name__ == "__main__":
+    print(dice("3D6+2"))
 
